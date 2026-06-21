@@ -1,6 +1,6 @@
 interface:
   display_name: "Codeartz AI 猫配图"
-  short_description: "为中文文章生成清爽、有 AI 猫 IP 的正文配图资产"
+  short_description: "为中文文章生成白底手绘、红橙蓝信息层级、带 AI 猫 IP 的正文配图资产"
   default_prompt: "Use $codeartz-illustrations to 为这篇中文文章设计并生成几张 AI 猫正文配图。"
 policy:
   allow_implicit_invocation: true
