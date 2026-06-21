@@ -2,6 +2,7 @@
 
 ## 必过项
 
+- 生成调用使用了 `assets/codeartz-ai-cat-reference.png` 作为图像参考输入，而不是只用文字 prompt。内置 `image_gen` 模式下，必须先 `view_image` 加载，再在 `image_gen` prompt 中把已可见图片标为 reference image / identity lock。
 - 是 16:9 横版。
 - 背景是干净白底。
 - 有 Codeartz AI 猫。
@@ -22,6 +23,8 @@
 
 出现以下情况，重生成或局部编辑：
 
+- 生成时没有附 `codeartz-ai-cat-reference.png`，没有先用 `view_image` 让本地图在会话中可见，或者只是把文件路径写进 prompt。
+- 已经 `view_image`，但后续 `image_gen` prompt 没有把这张可见图片明确标为 reference image / identity lock。
 - 左上角有“常见坑 / Workflow / 系统架构图 / 路线图”等标题。
 - AI 猫变成黑色实心角色、普通宠物猫、3D 机器人、商业吉祥物或表情包。
 - AI 猫只是站在旁边，没有参与核心动作。
@@ -38,6 +41,7 @@
 ## 迭代方法
 
 - 太普通：让 AI 猫成为动作主体，加入一个奇怪但成立的隐喻。
+- IP 跑偏：重新生成并附上 `codeartz-ai-cat-reference.png` 作为图像参考输入；内置模式下先 `view_image`，再在 `image_gen` prompt 里绑定可见图片。不要只增加更多角色形容词。
 - 太复杂：删节点，只保留一个动作和 3-5 个短标注。
 - 太幼稚：保留圆润和腮红，但强化 AI 助手职责、耳机、发光件和系统动作。
 - 太亮青蓝：把主路径改回橙色，重点改回红色，蓝色只留给系统反馈；亮青蓝只保留在 AI 猫硬件发光件。

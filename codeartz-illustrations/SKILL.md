@@ -11,6 +11,8 @@ description: 生成 Codeartz 风格的中文正文配图。用于用户要求为
 
 默认视觉 IP 是 **Codeartz AI 猫**：白色主体、圆润猫咪轮廓、耳机、蓝青色科技光效、粉紫可爱点缀的 AI/机器人助手。AI 猫必须参与画面的核心动作，不能只是站在旁边当装饰。
 
+生成时默认必须把 `assets/codeartz-ai-cat-reference.png` 作为图像参考输入传给生图工具。文字提示词只能描述构图和动作，不能替代角色定稿图。只把路径写进 prompt 不算使用参考图；内置 `image_gen` 不接收文件路径参数，固定先用 `view_image` 加载这张图，再在紧随其后的 `image_gen` prompt 里把“已可见图片”标为 reference image / identity lock。
+
 注意区分两层颜色：角色设定色只约束 AI 猫本体；整张图的风格配色使用固定规则，黑色线稿为主，橙色做主路径，红色做重点问题或结果，蓝色做系统反馈和辅助说明。
 
 ## 先读这些参考
@@ -55,11 +57,24 @@ description: 生成 Codeartz 风格的中文正文配图。用于用户要求为
 
 如果用户明确要求“生成 / 输出 / 做图 / 帮我生成”，不要停下来等确认；用内置 `image_gen` 每张单独生成。不要把多张图拼在一张里。
 
+每次生成前先把 `assets/codeartz-ai-cat-reference.png` 附为参考图输入，而不是只在文字里描述 AI 猫。参考图锁定角色身份、比例、五官、耳机和角色配色；文字 prompt 只负责当前文章的隐喻、构图、动作和标注。
+
+使用内置 `image_gen` 时，固定使用这个顺序：
+
+1. 用 `view_image` 打开 `assets/codeartz-ai-cat-reference.png`。
+2. 调用 `image_gen` 生成单张图。
+3. 在 prompt 里明确写：`Input image: the visible codeartz-ai-cat-reference.png is the reference image and identity lock for Codeartz AI Cat.`
+
+只执行 `view_image` 不等于完成参考图输入；后续 `image_gen` prompt 必须显式绑定这张可见图片。生成多张图时，每一张都要重复声明这张可见 IP 图是 reference image / identity lock。
+
+如果改用非内置图像入口，只有在该入口支持 reference image 输入，或明确支持引用会话里的已可见图片时，才能继续生成。否则先明确告诉用户“这次只能 prompt-only，不能保证 IP 锁定”。不要把 prompt-only 结果称为已按定稿图锁定；除非用户接受这个限制，否则不要继续批量生成。
+
 每张图只讲一个核心结构。提示词必须包含：
 
 - 16:9 横版中文正文配图
 - 纯白背景
 - 黑色手绘轮廓线
+- 使用随生成请求附带的 `codeartz-ai-cat-reference.png` 作为 Codeartz AI 猫角色定稿图
 - Codeartz AI 猫作为核心动作主体
 - 画面风格配色使用固定规则：黑色线稿，橙色主路径，红色重点或结果，蓝色系统反馈
 - 角色本体保留设定色：白色主体、浅灰蓝阴影、亮青蓝硬件光效、深蓝眼睛、粉色腮红、淡紫耳朵内侧
@@ -73,6 +88,7 @@ description: 生成 Codeartz 风格的中文正文配图。用于用户要求为
 
 生成后检查 `references/qa-checklist.md`。如果出现以下问题，优先重生成或局部编辑：
 
+- 本次生成没有把 `codeartz-ai-cat-reference.png` 作为参考图输入
 - AI 猫只是装饰
 - 画面太满
 - 太像流程图/PPT

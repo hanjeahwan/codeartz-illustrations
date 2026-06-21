@@ -8,6 +8,10 @@ Codeartz AI 猫是 Codeartz 中文正文配图的固定视觉 IP。
 
 角色定稿图：`assets/codeartz-ai-cat-reference.png`。
 
+生成和编辑时必须把这张定稿图作为图像参考输入传给图像工具。它是角色身份硬约束，负责锁定外形、比例、五官、耳机和角色配色。只在文字 prompt 里写“白色 AI 猫”或文件路径不够，容易漂成普通猫、黑色角色或商业吉祥物。
+
+使用内置 `image_gen` 时，先用 `view_image` 打开定稿图，再在紧随其后的 `image_gen` prompt 里把这张已可见图片声明为 reference image / identity lock。`image_gen` 不接收文件路径参数；只打开图片但不在生图 prompt 中绑定它，不算完成参考图输入。
+
 ## 外形
 
 - 白色猫咪主体，圆润大头，小身体，短四肢。
@@ -68,5 +72,7 @@ Codeartz AI 猫是 Codeartz 中文正文配图的固定视觉 IP。
 - 不要增加复杂服装、机甲、武器或大型 UI 背景。
 
 ## 判断标准
+
+先看生成记录：如果没有使用 `assets/codeartz-ai-cat-reference.png` 作为图像参考输入，这张图不能判定为 IP 已锁定，只能算 prompt-only 草稿。内置模式下，合格记录至少要包含一次 `view_image` 和紧随其后的 reference image / identity lock prompt 声明。
 
 如果去掉 AI 猫，图的核心隐喻还能完全成立，说明角色太装饰了；要重写提示词，让 AI 猫成为动作主体。

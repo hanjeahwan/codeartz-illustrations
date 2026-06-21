@@ -2,14 +2,24 @@
 
 每张图单独生成。根据正文内容替换变量，不要把多张图拼在一起。
 
+生成调用必须把 `assets/codeartz-ai-cat-reference.png` 作为图像参考输入一并传入。不要只把文件路径写进 prompt；路径文字不会约束角色形象。参考图负责锁定 Codeartz AI 猫的身份、比例、五官、耳机和角色配色；prompt 负责当前图的文章隐喻、构图和动作。
+
+使用内置 `image_gen` 时，先用 `view_image` 打开 `assets/codeartz-ai-cat-reference.png`，再调用 `image_gen`。`image_gen` 不接收文件路径参数；在 prompt 里把这张会话中已可见图片标成 reference image / identity lock。只看图但不在后续 prompt 里绑定它，不算使用参考图。
+
 ```text
 Generate one standalone 16:9 horizontal Chinese article illustration.
+
+Input images:
+The visible codeartz-ai-cat-reference.png is the reference image and identity lock for Codeartz AI Cat.
+
+Image reference:
+Use the attached codeartz-ai-cat-reference.png as the identity lock for Codeartz AI Cat. Preserve the reference character's rounded white cat body, large deep-blue eyes, round tech headphones with cyan glow rings, lavender inner ears, pink blush, small chest screen/paw mark, tail ring, and thin black hand-drawn outline. Adapt the pose and action to the current composition, but do not redesign the character. Do not replace it with a generic cat, black creature, 3D robot, sticker mascot, or commercial cartoon character.
 
 Visual DNA:
 Pure white background. Minimalist black hand-drawn product-sketch style. Thin slightly wobbly pen lines. Lots of empty white space. Clean absurd product-sketch feeling with Codeartz AI Cat as the recurring IP character. Global illustration colors are sparse red/orange/blue handwritten accents: orange for the main flow/path/arrows, red for key warnings/problems/results, blue for secondary notes or system feedback. The AI Cat has its own character palette: white body, light gray-blue shadows, bright cyan-blue only on headphones/tail ring/chest screen/glowing hardware, deep blue eyes, pink blush, lavender inner ears. Do not let the bright cyan-blue character accent become the global scene palette. No gradients, no shadows, no paper texture, no complex background, no commercial vector style, no PPT infographic look, no cute mascot poster, no children's illustration, no realistic UI.
 
 Recurring IP character required:
-Codeartz AI Cat, a soft white AI/robot cat assistant with a round head, large blue eyes, small body, black thin outline, tech headphones with bright cyan-blue glowing rings, lavender inner ears, pink blush, a small chest screen or paw icon, and a tail ring with cyan-blue glow. The AI Cat must perform the core conceptual action, not decorate the scene. It should feel friendly, smart, collaborative, and slightly playful, but not childish. Do not draw it as a black creature, ordinary pet cat, 3D robot, sticker mascot, or commercial poster character.
+Codeartz AI Cat, matching the attached reference image, a soft white AI/robot cat assistant with a round head, large blue eyes, small body, black thin outline, tech headphones with bright cyan-blue glowing rings, lavender inner ears, pink blush, a small chest screen or paw icon, and a tail ring with cyan-blue glow. The AI Cat must perform the core conceptual action, not decorate the scene. It should feel friendly, smart, collaborative, and slightly playful, but not childish. Do not draw it as a black creature, ordinary pet cat, 3D robot, sticker mascot, or commercial poster character.
 
 Theme:
 {正文配图主题}
@@ -47,5 +57,5 @@ Edit the provided image. Remove only the handwritten title "{要删除的文字}
 增强角色参与感：
 
 ```text
-Regenerate this illustration with the same core meaning and simple layout, but make the Codeartz AI Cat more central to the conceptual action. The AI Cat should be doing the work that explains the idea, not standing beside the diagram. Preserve the clean white background, thin black hand-drawn contour lines, sparse red/orange/blue handwritten accents, and the AI Cat's character palette: white body, small cyan-blue hardware glow, pink blush, lavender ear accents. Keep cyan-blue limited to the character hardware or tiny status lights, not the whole scene.
+Regenerate this illustration with the same core meaning and simple layout. Use the attached codeartz-ai-cat-reference.png as the identity lock for Codeartz AI Cat, and make the cat more central to the conceptual action. The AI Cat should be doing the work that explains the idea, not standing beside the diagram. Preserve the clean white background, thin black hand-drawn contour lines, sparse red/orange/blue handwritten accents, and the AI Cat's character palette from the reference image: white body, small cyan-blue hardware glow, pink blush, lavender ear accents. Keep cyan-blue limited to the character hardware or tiny status lights, not the whole scene.
 ```
