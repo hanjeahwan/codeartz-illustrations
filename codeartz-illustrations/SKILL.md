@@ -22,7 +22,7 @@ description: 生成 Codeartz 风格的中文正文配图。用于用户要求为
 - `references/composition-patterns.md`：结构类型、原创隐喻方法和反复刻规则。
 - `references/prompt-template.md`：单张生图提示词模板。
 - `references/qa-checklist.md`：生成后检查和迭代规则。
-- `assets/ip/codeartz-ai-cat-reference.png`：角色定稿图和配色板；默认角色以此为准。
+- `assets/codeartz-ai-cat-reference.png`：角色定稿图和配色板；默认角色以此为准。
 
 ## 工作流
 

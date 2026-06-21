@@ -6,7 +6,7 @@ Codeartz AI 猫是 Codeartz 中文正文配图的固定视觉 IP。
 
 默认每张图都要出现 AI 猫。它不是贴纸，也不是站在角落里的装饰物，而是正在参与系统运转、内容加工、判断分流或协作交付的 AI/机器人猫咪助手。
 
-角色定稿图：`assets/ip/codeartz-ai-cat-reference.png`。
+角色定稿图：`assets/codeartz-ai-cat-reference.png`。
 
 ## 外形
 
